@@ -146,31 +146,34 @@ function login(){
 
     if(role === 'user'){
 
-            var flightsLowerToHigher = flights.sort(function(a,b){
-                return a.cost - b.cost;
-            });
+            var sortByPrice = prompt('Select option  to sort by: same or higher or lower')
 
-            console.log(flightsLowerToHigher);
+            if(sortByPrice === "lower"){
+                var flightsLowerToHigher = flights.sort(function(a,b){
+                    return a.cost - b.cost;
+                });
+                console.log('flights sorted from lower to higher price', flightsLowerToHigher);
+            }
 
-            var flightsHigherToLower = flights.sort(function(a,b){
-                return b.cost - a.cost;
-            });
 
-            console.log(flightsHigherToLower)
-            
-           var sameCost = flights.filter(function(flight, i, array){
-               var result = array.filter(function(f){
-                    return flight.cost === f.cost
-                })  
-                return result.length >= 2
-            });
-           console.log(sameCost)
-            
+            if(sortByPrice === "higher"){
+                var flightsHigherToLower = flights.sort(function(a,b){
+                    return b.cost - a.cost;
+                });
+                console.log('flights sorted from higher to lower price', flightsHigherToLower)
+            }
+
+            if(sortByPrice === "same"){
+                var sameCost = flights.filter(function(flight, i, array){
+                    var result = array.filter(function(f){
+                            return flight.cost === f.cost
+                        })  
+                        return result.length >= 2
+                    });
+                console.log('flights with the same cost', sameCost)
+            }
             
         }
-
-
-
         
         
     }login()

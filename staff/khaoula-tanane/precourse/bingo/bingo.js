@@ -1,37 +1,59 @@
 function getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
-  
+
+let usedNumbers = []
+
+function getUniqueNumber(){
+    let number = getRandomArbitrary(1, 20)
+    if(usedNumbers.includes(number)){
+      return getUniqueNumber()
+    }
+    usedNumbers.push(number)
+    return number
+}
+
+let generatedNumber = []
+
+function getNonRepeatedNumber(){
+    let number = getRandomArbitrary(1, 20)
+    if(generatedNumber.includes(number)){
+      return getNonRepeatedNumber()
+    }
+    generatedNumber.push(number)
+    return number
+}
+
   let myCards = [
     [
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15)
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber()
     ],
   
     [
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15)
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber()
     ],
   
     [
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15),
-      getRandomArbitrary(1, 15)
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber(),
+      getUniqueNumber()
     ]
   ];
   
   let total = 0;
   
   function playGame() {
-    let newNumber = getRandomArbitrary(1, 15);
+    let newNumber = getNonRepeatedNumber();
     total++;
     console.log(newNumber, "new number");
   
@@ -42,16 +64,16 @@ function getRandomArbitrary(min, max) {
       })
     });
   
-  var line = 0;
+    let line = 0;
+
     myCards.forEach((group, i) => {
-      let firstNumber = group.find(card => {
-        return !isNaN(card);
+      let isLine = group.every(card => {
+        return card === "X";
       });
     
-      if (!firstNumber) {
+      if (isLine) {
         line++
-        if(line === 1){console.log('LINE!!', i +1 );
-      }
+        if(line === 1) console.log('LINE!!', i + 1);
     }
     });
   
