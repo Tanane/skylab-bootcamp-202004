@@ -107,10 +107,27 @@ function login(){
                 function addFlight(){
                     var origin = prompt ('Where are you departing from?')
                     var destination = prompt('Where are you going?')
-                    var cost = prompt('How much does it cost?')
+
+                    console.log(Number(origin), '---------------------------------')
+
+          
+                    if(!isNaN(Number(origin)) || !isNaN(Number(destination))) {
+                        alert('origin and destionation should be a string')
+                        return addFlight()
+                    }
+
+                    var cost = Number(prompt('How much does it cost?'))
+                    if(typeof cost !== 'number'){
+                        alert('cost should be a number')
+                        return addFlight()
+                    }
+
                     var scale = confirm('Whith scale or not?')
                     var id = flights.length
-    
+
+
+                
+                    
                     var newFlight = {id, origin, destination, cost, scale}
     
                    flights.push(newFlight)
